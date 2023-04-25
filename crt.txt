@@ -1,0 +1,56 @@
+#include <stdio.h>
+//Singly Linked List
+struct SLL{
+    long data;
+    struct SLL *next;
+};
+int main() {
+    struct SLL *head = NULL, *ptr1=NULL, *ptr2=NULL;//NULL
+    head = malloc(sizeof(struct SLL));
+    ptr1 = malloc(sizeof(struct SLL));
+    ptr2 = malloc(sizeof(struct SLL));
+    head->data = 45; head->next = ptr1;//45->NULL
+    ptr1->data = 56; ptr1->next = ptr2; //45->56->NULL
+    ptr2->data = 78; ptr2->next = NULL;//45->56->78->NULL
+    for(struct SLL *i=head; i ; i=i->next) printf("%d ", i->data);
+}
+ 
+push operation in single linked list
+
+#include <stdio.h>
+//Singly Linked List
+struct SLL{ long data; struct SLL *next; }*head;
+void push(int v){
+    struct SLL *p = malloc(sizeof(struct SLL)); p->data=v;
+    //1.Create a node insert value
+    p->next = head;//2. new node next is head
+    head = p;//3. Make new node head;
+}
+int main() {
+    push(45); push(56); push(78);
+    for(struct SLL *i=head; i ; i=i->next) printf("%d ", i->data);
+}
+
+SIngly Linked List Basics #3 PUSH, APPEND
+
+#include <stdio.h>
+//Singly Linked List
+struct SLL{ long data; struct SLL *next; }*head;
+void push(int v){//  pastebin.com/TANxP64E
+    struct SLL *p = malloc(sizeof(struct SLL)); p->data=v;
+    //1.Create a node insert value
+    p->next = head;//2. new node next is head
+    head = p;//3. Make new node head;
+}
+void append(int v){//O(N)
+    if(head == NULL) return push(v);
+    struct SLL *t=head, *p;
+    while(t->next != NULL) t=t->next; //1
+    p = malloc(sizeof(struct SLL)); p->data=v; //2
+    t->next = p; p->next = NULL;
+}
+int main() {
+    push(45); push(56); append(78);//56->45->78->NULL
+    for(struct SLL *i=head; i ; i=i->next) printf("%d ", i->data);
+}
+ 
